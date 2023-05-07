@@ -12,36 +12,36 @@ import cv2
 
 DEBUG = False
 if __name__ == '__main__':
-    # my_photo = cv2.imread('/home/ftp/test.jpeg')
-    # cv2.imshow('juj', my_photo)
-    #
-    # # Подготовим новые размеры
-    # final_wide = 200
-    # r = float(final_wide) / my_photo.shape[1]
-    # dim = (final_wide, int(my_photo.shape[0] * r))
-    #
-    # # уменьшаем изображение до подготовленных размеров
-    # resized = cv2.resize(my_photo, dim, interpolation=cv2.INTER_AREA)
-    # cv2.imshow("Resized image", resized)
-    # cv2.waitKey(0)
-    #
-    # cv2.destroyAllWindows()
+    pic = cv2.imread('/home/ftp/manul.jpg')
+    # cv2.imshow('МАНУЛ', pic)
 
-    # capture frames from a camera with device index=0
-    cap = cv2.VideoCapture(0)
+    # Подготовим новые размеры
+    final_wide = 800
+    r = float(final_wide) / pic.shape[1]
+    dim = (final_wide, int(pic.shape[0] * r))
 
-    # loop runs if capturing has been initialized
-    while True:
-        # захват
-        ret, frame = cap.read()
-        # отображение
-        cv2.imshow('Camera', frame)
-        # ждём нажатия 'q'
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+    # уменьшаем изображение до подготовленных размеров
+    resized = cv2.resize(pic, dim, interpolation=cv2.INTER_AREA)
+    cv2.imshow("Мелкий манул", resized)
+    cv2.waitKey(0)
 
-    # отпускаем камеру
-    cap.release()
-
-    # убираем окна
     cv2.destroyAllWindows()
+
+    # # capture frames from a camera with device index=0
+    # cap = cv2.VideoCapture(0)
+    #
+    # # loop runs if capturing has been initialized
+    # while True:
+    #     # захват
+    #     ret, frame = cap.read()
+    #     # отображение
+    #     cv2.imshow('Camera', frame)
+    #     # ждём нажатия 'q'
+    #     if cv2.waitKey(1) & 0xFF == ord('q'):
+    #         break
+    #
+    # # отпускаем камеру
+    # cap.release()
+    #
+    # # убираем окна
+    # cv2.destroyAllWindows()
