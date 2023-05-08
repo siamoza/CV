@@ -25,6 +25,22 @@ if __name__ == '__main__':
     cv2.imshow("Мелкий манул", resized)
     cv2.waitKey(0)
 
+    crop = resized[70:310, 300:600]
+    cv2.imshow("Crop", crop)
+    cv2.waitKey(0)
+
+    (h, w) = resized.shape[:2]
+    center = (w / 2, h / 2)
+    prepObj = cv2.getRotationMatrix2D(center, 90, 1.0)
+    rotated = cv2.warpAffine(resized, prepObj, (w, h))
+    cv2.imshow("RotateImage", rotated)
+    cv2.waitKey(0)
+
+    flipped = cv2.flip(resized, 0)
+    cv2.imshow("flip", flipped)
+    cv2.waitKey(0)
+
+
     cv2.destroyAllWindows()
 
     # # capture frames from a camera with device index=0
