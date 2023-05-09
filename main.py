@@ -23,23 +23,32 @@ if __name__ == '__main__':
     # уменьшаем изображение до подготовленных размеров
     resized = cv2.resize(pic, dim, interpolation=cv2.INTER_AREA)
     cv2.imshow("Мелкий манул", resized)
+
     cv2.waitKey(0)
 
-    crop = resized[70:310, 300:600]
-    cv2.imshow("Crop", crop)
-    cv2.waitKey(0)
+    low_color = (25, 60, 175)
+    high_color = (100, 255, 255)
+    hsv = cv2.cvtColor(resized, cv2.COLOR_BGR2HSV)
 
-    (h, w) = resized.shape[:2]
-    center = (w / 2, h / 2)
-    prepObj = cv2.getRotationMatrix2D(center, 90, 1.0)
-    rotated = cv2.warpAffine(resized, prepObj, (w, h))
-    cv2.imshow("RotateImage", rotated)
+    only_object = cv2.inRange(hsv, low_color,
+                              high_color)
+    # вывод отфильтрованного изображения на экран
+    cv2.imshow('only object', only_object)
     cv2.waitKey(0)
-
-    flipped = cv2.flip(resized, 0)
-    cv2.imshow("flip", flipped)
-    cv2.waitKey(0)
-
+    # crop = resized[70:310, 300:600]
+    # cv2.imshow("Crop", crop)
+    # cv2.waitKey(0)
+    #
+    # (h, w) = resized.shape[:2]
+    # center = (w / 2, h / 2)
+    # prepObj = cv2.getRotationMatrix2D(center, 90, 1.0)
+    # rotated = cv2.warpAffine(resized, prepObj, (w, h))
+    # cv2.imshow("RotateImage", rotated)
+    # cv2.waitKey(0)
+    #
+    # flipped = cv2.flip(resized, 0)
+    # cv2.imshow("flip", flipped)
+    # cv2.waitKey(0)
 
     cv2.destroyAllWindows()
 
